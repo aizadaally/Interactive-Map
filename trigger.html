@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Trigger Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100vh; /* Full-screen height */
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        const map = L.map('map').setView([42.87, 74.59], 2); // World view
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Add markers with triggers
+        const triggers = [
+            {
+                name: "Toktogul Reservoir, Kyrgyzstan",
+                location: [41.8708, 72.9460],
+                description: "A large reservoir in Kyrgyzstan, providing water resources and connecting communities.",
+                image: "./images/toktogul.jpg" // Replace with your image file name
+            },
+            {
+                name: "West Lake, Hangzhou, China",
+                location: [30.2431, 120.1502],
+                description: "A famous freshwater lake in China, known for its beauty and cultural significance.",
+                image: "./images/west.jpg" // Replace with your image file name
+            },
+            {
+                name: "Magic Fountain of Montjuïc, Barcelona",
+                location: [41.3723, 2.1512],
+                description: "A large fountain in Barcelona, renowned for its light and music performances.",
+                image: "./images/fountain.jpg" // Replace with your image file name
+            },
+            {
+                name: "Issyk-Kul Lake, Kyrgyzstan",
+                location: [42.4146, 77.2427],
+                description: "One of the largest alpine lakes in the world, significant for its biodiversity and as a cultural heritage site.",
+                image: "./images/issykkul.jpg" // Replace with your image file name
+            },
+            {
+                name: "Li River, Guilin, China",
+                location: [25.2800, 110.2965],
+                description: "A river in Guangxi Province, famous for its karst mountain landscape and as a source of inspiration for artists.",
+                image: "./images/Liriver.jpg" // Replace with your image file name
+            },
+            {
+                name: "Park Güell, Barcelona",
+                location: [41.4145, 2.1527],
+                description: "A public park system composed of gardens and architectonic elements, featuring fountains designed by Antoni Gaudí.",
+                image: "./images/park.jpg" // Replace with your image file name
+            },
+            {
+                name: "The Clyde River, Glasgow",
+                location: [55.8608, -4.2576],
+                description: "The Clyde River runs through Glasgow, playing a significant role in its industrial and cultural history.",
+                image: "./images/glasgow1.jpg" // Replace with your image file name
+            },
+            {
+                name: "Kelvingrove Park Fountain, Glasgow",
+                location: [55.8686, -4.2886],
+                description: "A historical fountain in Kelvingrove Park, highlighting the connection between water and urban green spaces.",
+                image: "./images/glasgow2.jpg" // Replace with your image file name
+            },
+            {
+                name: "People's Palace Doulton Fountain, Glasgow",
+                location: [55.8481, -4.2075],
+                description: "The largest terracotta fountain in the world, symbolizing Glasgow's relationship with water and global connections.",
+                image: "./images/glasgow3.jpg" // Replace with your image file name
+            }
+
+            
+        ];
+
+        // Add markers to the map
+        triggers.forEach(trigger => {
+            const marker = L.marker(trigger.location).addTo(map);
+            marker.bindPopup(`
+                <h3>${trigger.name}</h3>
+                <p>${trigger.description}</p>
+                <img src="${trigger.image}" alt="${trigger.name}" style="width:100%; border-radius:5px;">
+            `);
+        });
+    </script>
+</body>
+</html>
